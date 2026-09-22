@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Post;
 
 use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+
 
 class IndexController extends Controller
 {
@@ -13,9 +15,9 @@ class IndexController extends Controller
      */
     public function __invoke(Request $request):View
     {
+        $posts = Post::all();
         // view名では.を使いディレクトリ指定するのが基本
         return view('post.index')
-            ->with('name', 'laravel')
-            ->with('version', 12);
+            ->with('posts', $posts);
     }
 }
